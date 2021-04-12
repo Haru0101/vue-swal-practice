@@ -8,8 +8,12 @@
 </head>
 <body>
     <div id="app">
-        <button @click="alert();">初期表示</button><br>
-        <button @click="aletInfo();">情報を表示</button>
+        <button @click="alert()">初期表示</button><br>
+        <button @click="aletInfo()">情報を表示</button><br>
+        <button @click="alertWarning()">注意を表示</button><br>
+        <button @click="alertError()">エラーを表示</button><br>
+        <button @click="alertSuccess()">成功を表示</button><br>
+        <button @click="alertWithInput()">入力欄を表示</button><br>
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -32,7 +36,33 @@
                         icon: 'info',
                         text: 'なにか情報を表示します。'
                     })
+                },
+                alertWarning(){
+                    this.$swal({
+                        icon: 'warning',
+                        text: 'なにか注意書きを表示します。'
+                    })
+                },
+                alertError(){
+                    this.$swal({
+                        icon: 'error',
+                        text: '憎きエラーを表示します。'
+                    })
+                },
+                alertSuccess(){
+                    this.$swal({
+                        icon: 'success',
+                        text: '成功を表示します。'
+                    })
+                },
+                alertWithInput(){
+                    this.$swal({
+                        icon: 'info',
+                        text: '名前を入力してください。',
+                        content: 'input'
+                    })
                 }
+
             }
         })
     </script>
