@@ -8,7 +8,9 @@
 </head>
 <body>
     <div id="app">
-        <button @click="alert();">初期のVue Swal</button>
+        <button @click="alert();">初期表示</button><br>
+        <button @click="aletInfo();">情報を表示</button>
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-swal"></script>
@@ -24,6 +26,12 @@
             methods: {
                 alert(){
                     this.$swal('Hello word!');
+                },
+                aletInfo(){
+                    this.$swal({
+                        icon: 'info',
+                        text: 'なにか情報を表示します。'
+                    })
                 }
             }
         })
