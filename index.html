@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue Swal Practice</title>
 </head>
+
 <body>
     <div id="app">
         <button @click="alert()">初期表示</button><br>
@@ -14,6 +16,8 @@
         <button @click="alertError()">エラーを表示</button><br>
         <button @click="alertSuccess()">成功を表示</button><br>
         <button @click="alertWithInput()">入力欄を表示</button><br>
+        <button @click="alertWithCancelButton()">ボタン追加</button><br>
+        <button @click="alertWithCancelButton()">押したボタンで処理を分ける</button><br>
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -25,46 +29,74 @@
 
             },
             mounted() {
-                
+
             },
             methods: {
-                alert(){
+                alert() {
                     this.$swal('Hello word!');
                 },
-                aletInfo(){
+                aletInfo() {
                     this.$swal({
                         icon: 'info',
                         text: 'なにか情報を表示します。'
                     })
                 },
-                alertWarning(){
+                alertWarning() {
                     this.$swal({
                         icon: 'warning',
                         text: 'なにか注意書きを表示します。'
                     })
                 },
-                alertError(){
+                alertError() {
                     this.$swal({
                         icon: 'error',
                         text: '憎きエラーを表示します。'
                     })
                 },
-                alertSuccess(){
+                alertSuccess() {
                     this.$swal({
                         icon: 'success',
                         text: '成功を表示します。'
                     })
                 },
-                alertWithInput(){
+                alertWithInput() {
                     this.$swal({
-                        icon: 'info',
-                        text: '名前を入力してください。',
-                        content: 'input'
-                    })
-                }
+                            icon: 'info',
+                            text: '名前を入力してください。',
+                            content: 'input'
+                        })
+                        .then((submitName) => {
+                            this.$swal({
+                                icon: 'success',
+                                text: `あなたの名前は${submitName}ですね。`
+                            })
+                        })
+                },
+                alertWithCancelButton() {
+                    this.$swal({
+                            icon: 'info',
+                            html: <span style="color:red;">+'HTML'+</span>+'が使えるようになります。',
+                            buttons: true
+                        })
+                        .then((isOkButton) => {
+                            if (isOkButton) {
+                                this.$swal({
+                                    icon: 'success',
+                                    text: 'OKボタンが押されました。'
+                                })
+                            } else {
+                                this.$swal({
+                                    icon: 'error',
+                                    text: 'キャンセルボタンが押されました。'
+                                })
+                            }
+                        })
+                },
+
 
             }
         })
     </script>
 </body>
+
 </html>
